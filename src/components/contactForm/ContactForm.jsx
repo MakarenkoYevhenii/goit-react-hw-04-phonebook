@@ -1,6 +1,6 @@
 import styles from '../contactForm/contactForm.module.css'
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState,memo,useCallback } from 'react';
 
 const initialState={
   name:"",
@@ -13,13 +13,13 @@ const ContactForm =(props) => {
     props.addContact(book.name, book.number)
   };
 
-  const handleChange = e => {
+  const handleChange =useCallback( e => {
     const { name, value } = e.target;
     setBook({
       ...book,
       [name]: value,
     });
-  };
+  });
   
     
     return (
@@ -50,7 +50,7 @@ const ContactForm =(props) => {
         </form>     
     )}
 
-export default ContactForm;
+export default memo(ContactForm);
 
 ContactForm.propTypes={
 addContact:PropTypes.func.isRequired,

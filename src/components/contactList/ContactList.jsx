@@ -14,7 +14,7 @@ import { memo } from 'react';
         )
     }
 
-export default memo(ContactList);
+export default ContactList;
 
 ContactList.propTypes={
     names: PropTypes.arrayOf(
