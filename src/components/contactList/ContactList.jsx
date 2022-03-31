@@ -1,6 +1,5 @@
 import styles from '../contactList/contactForm.module.css'
 import PropTypes from 'prop-types';
-import { memo } from 'react';
 
     const ContactList = ({names, removeHuman}) => {
         const elements = names.map(item => <li key={item.id} className={styles.items}>

@@ -1,8 +1,9 @@
 import ContactForm from './contactForm/ContactForm';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef,useCallback } from 'react';
 import ContactList from './contactList/ContactList';
 import Filter from './filter/Filter';
 import { nanoid } from 'nanoid';
+
 
 const initialState = {
   contacts: [
@@ -33,7 +34,7 @@ const App = () => {
     }
   },[book]);
 
-  const addContact = (name, number) => {
+  const addContact = useCallback((name, number) => {
     const { contacts } = book;
     const result = contacts.find(
       item => item.name.toLowerCase() === name.toLowerCase()
@@ -54,7 +55,7 @@ const App = () => {
         contacts: [...contacts, newContact],
       };
     });
-  };
+  })
   const getFilteredPeople = () => {
     const { filter, contacts } = book;
     if (!filter) {
@@ -77,13 +78,13 @@ const App = () => {
       };
     });
   };
-  const handleChange = e => {
+  const handleChange = useCallback( e => {
     const { name, value } = e.target;
     setBook({
       ...initialState,
       [name]: value,
     });
-  };
+  });
   const { filter } = book;
   const FilteredPeople = getFilteredPeople();
   return (
