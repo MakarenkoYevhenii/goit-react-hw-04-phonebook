@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-
+import { memo } from 'react';
 const Filter = ({ handleChange}) => {    
     
     return (
@@ -11,7 +11,7 @@ const Filter = ({ handleChange}) => {
     )
 }
 
-export default Filter;
+export default memo(Filter);
 Filter.propTypes={
         handleChange:PropTypes.func.isRequired,
 }
